@@ -128,3 +128,13 @@ def test_map_filter_reduce():
     empty = BetterSet()
     with pytest.raises(TypeError):
         empty.reduce(lambda acc, x: acc + x)  # type: ignore[arg-type]
+
+
+def test_flatten_classmethod():
+    out = BetterSet.flatten([[1, 2], {2, 3}, (3, 4)])
+    assert isinstance(out, BetterSet)
+    assert out == {1, 2, 3, 4}
+    # empty input
+    assert BetterSet.flatten([]) == BetterSet()
+    # nested empty
+    assert BetterSet.flatten([[], [], []]) == BetterSet()

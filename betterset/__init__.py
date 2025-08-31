@@ -204,5 +204,15 @@ class BetterSet(set, Generic[T]):
             return ft.reduce(func, self)  # type: ignore[arg-type]
         return ft.reduce(func, self, initial)  # type: ignore[arg-type]
 
+    # ------------------------------ Class methods --------------------------- #
+    @classmethod
+    def flatten(cls, iterable: Iterable[Iterable[T]]) -> "BetterSet[T]":
+        """Flatten an iterable of iterables into a BetterSet.
+
+        Example:
+            BetterSet.flatten([[1, 2], {2, 3}]) -> BetterSet({1, 2, 3})
+        """
+        return cls(it.chain.from_iterable(iterable))
+
 
 __all__ = ["BetterSet"]
