@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Local Python version pin (pyenv/uv/asdf)
+.python-version
